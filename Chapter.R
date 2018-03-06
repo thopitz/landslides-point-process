@@ -233,15 +233,17 @@ SU.ROC.cv=roc(SU.presence.absence~SU.probability.cv)
 SU.AUC=as.numeric(SU.ROC$auc)
 SU.AUC.cv=as.numeric(SU.ROC.cv$auc)
 
+
 ## Plot pixel ROC 
-plot(pixel.ROC,xlim=c(0,1),ylim=c(0,1),col="cyan3")
-lines(pixel.ROC.cv)
-legend("topright",legend=c("Fit","CV"),col=c("cyan3","black"),lty=c(1,1))
+plot(1-pixel.ROC$specificities,pixel.ROC$sensitivities,xlim=c(0,1),ylim=c(0,1),col="cyan3",xlab="1-Specificity",ylab="Sensitivity",main="ROC curve")
+lines(1-pixel.ROC.cv$specificities,pixel.ROC.cv$sensitivities)
+legend("bottomright",legend=c("Fit","CV"),col=c("cyan3","black"),lty=c(1,1))
 
 ## Plot SU ROC
-plot(SU.ROC,xlim=c(0,1),ylim=c(0,1),col="cyan3")
-lines(SU.ROC.cv)
-legend("topright",legend=c("Fit","CV"),col=c("cyan3","black"),lty=c(1,1))
+plot(1-SU.ROC$specificities,SU.ROC$sensitivities,xlim=c(0,1),ylim=c(0,1),col="cyan3",xlab="1-Specificity",ylab="Sensitivity",main="ROC curve")
+lines(1-SU.ROC.cv$specificities,SU.ROC.cv$sensitivities)
+legend("bottomright",legend=c("Fit","CV"),col=c("cyan3","black"),lty=c(1,1))
+
 
 
 
